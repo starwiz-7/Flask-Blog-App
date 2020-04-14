@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+ <title>HOME</title>
+{% endblock %}
+
+{% block body %}
+ <h1>ALL POSTS</h1>
+ <br>
+  <div align="right">
+    <a class = 'btn btn-success' href="/posts/new_post">Create new Post</a>
+  </div>
+ <br>
+  {% for post in posts %}
+  <div class="jumbotron bg-dark text-white ">
+    <h2>{{ post.title}}</h2>
+    <br>
+    {% if post.author %}
+      <small>By: {{ post.author }}</small>
+    {% else %}
+      <small>By: N/A</small>
+    {% endif %}
+      <br>
+      <small> Date: {{ post.date_posted}}</small>
+    <p style="white-space: pre-wrap">{{ post.content }}</p>
+    <br>
+    <a class = "btn btn-primary" href='/posts/edit/{{ post.id }}'>Edit</a>
+    <a class = "btn btn-danger" href='/posts/delete/{{ post.id }}'>Delete</a>
+    </div>
+  {% endfor %}
+
+{% endblock %}
